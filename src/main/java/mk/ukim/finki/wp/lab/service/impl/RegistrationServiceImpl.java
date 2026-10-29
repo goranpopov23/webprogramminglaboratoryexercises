@@ -7,6 +7,8 @@ import mk.ukim.finki.wp.lab.repository.impl.InMemoryWorkshopRepository;
 import mk.ukim.finki.wp.lab.service.RegistrationService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class RegistrationServiceImpl implements RegistrationService {
     private final InMemoryRegistrationRepository _registrationRepository;
@@ -37,5 +39,15 @@ public class RegistrationServiceImpl implements RegistrationService {
         workshop.setCapacity(workshop.getCapacity() - numberOfSeats);
 
         return this._registrationRepository.save(registration);
+    }
+
+    @Override
+    public List<Registration> findAll() {
+        return _registrationRepository.findAll();
+    }
+
+    @Override
+    public List<Registration> findByWorkshopCategory(String category) {
+            return _registrationRepository.findByWorkshopCategory(category);
     }
 }

@@ -79,6 +79,15 @@
     <br/>
     <input type="submit" value="Register">
   </form>
+
+  <form action="/registration" method="get">
+    <select name="category">
+      <option value=""></option>
+      <option th:each="category : ${categories}" th:text="${category}" th:value="${category}"></option>
+    </select>
+    <input type="submit" value="Filter">
+  </form>
 </main>
 </body>
 </html>
+

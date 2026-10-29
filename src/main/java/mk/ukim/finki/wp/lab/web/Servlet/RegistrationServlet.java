@@ -15,6 +15,7 @@ import org.thymeleaf.web.servlet.JakartaServletWebApplication;
 import java.io.IOException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.util.List;
 
 @WebServlet(name = "RegistrationServlet", urlPatterns = "/registration")
 public class RegistrationServlet extends HttpServlet {
@@ -24,6 +25,32 @@ public class RegistrationServlet extends HttpServlet {
     public RegistrationServlet(SpringTemplateEngine springTemplateEngine, RegistrationService _registrationService) {
         this.springTemplateEngine = springTemplateEngine;
         this._registrationService = _registrationService;
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        IWebExchange webExchange = JakartaServletWebApplication
+                .buildApplication(getServletContext())
+                .buildExchange(req, resp);
+
+        WebContext context = new WebContext(webExchange);
+
+        List<Registration> registrations;
+
+        String category = req.getParameter("category");
+
+        if(category == null || category.isEmpty()){
+            registrations = _registrationService.findAll();
+        }else{
+            registrations = _registrationService.findByWorkshopCategory(category);
+        }
+
+        context.setVariable("category", category);
+        context.setVariable("registrations", registrations);
+
+        springTemplateEngine.process("registrationsList.html", context, resp.getWriter());
+
+
     }
 
     @Override

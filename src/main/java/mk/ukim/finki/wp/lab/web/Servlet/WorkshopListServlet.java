@@ -5,7 +5,9 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import mk.ukim.finki.wp.lab.model.Registration;
 import mk.ukim.finki.wp.lab.model.Workshop;
+import mk.ukim.finki.wp.lab.service.RegistrationService;
 import mk.ukim.finki.wp.lab.service.WorkshopService;
 import org.thymeleaf.context.WebContext;
 import org.thymeleaf.spring6.SpringTemplateEngine;
@@ -14,6 +16,8 @@ import org.thymeleaf.web.servlet.JakartaServletWebApplication;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @WebServlet(name = "WorkshopServlet", urlPatterns = "")
 public class WorkshopListServlet extends HttpServlet {
@@ -34,6 +38,7 @@ public class WorkshopListServlet extends HttpServlet {
         WebContext context = new WebContext(webExchange);
 
         List<Workshop> workshopList;
+        Set<String> categories = _workshopService.listAll().stream().map(Workshop::getCategory).collect(Collectors.toSet());
 
         String workshopSearchBarText = req.getParameter("text");
         String workshopSearchBarMaxPrice = req.getParameter("maxPrice");
@@ -54,6 +59,7 @@ public class WorkshopListServlet extends HttpServlet {
         }
 
         context.setVariable("workshops", workshopList);
+        context.setVariable("categories", categories);
 
         springTemplateEngine.process("listWorkshops.html", context, resp.getWriter());
     }

@@ -28,6 +28,32 @@ public class DataHolder {
         workshops.add(new Workshop("Cloud Computing", "Cloud", 2200, 10));
         workshops.add(new Workshop("Mobile Development", "Mobile", 1900, 0));
         workshops.add(new Workshop("DevOps", "Programming", 2300, 7));
+
+        // Programming Category
+        DataHolder.registrations.add(new Registration("Java Fundamentals", "Alice Smith", "alice@example.com", 2));
+        DataHolder.registrations.add(new Registration("Spring Boot", "Bob Jones", "bob@example.com", 1));
+        DataHolder.registrations.add(new Registration("DevOps", "Charlie Brown", "charlie@example.com", 3));
+
+        // Web Category
+        DataHolder.registrations.add(new Registration("Web Development", "Diana Prince", "diana@example.com", 1));
+
+        // Databases Category
+        DataHolder.registrations.add(new Registration("Database Design", "Evan Wright", "evan@example.com", 2));
+
+        // Design Category
+        DataHolder.registrations.add(new Registration("UI/UX Design", "Fiona Gallagher", "fiona@example.com", 1));
+
+        // Security Category
+        DataHolder.registrations.add(new Registration("Cyber Security", "George Clark", "george@example.com", 2));
+
+        // AI Category
+        DataHolder.registrations.add(new Registration("Machine Learning", "Hannah Abbott", "hannah@example.com", 1));
+
+        // Cloud Category
+        DataHolder.registrations.add(new Registration("Cloud Computing", "Ian Malcolm", "ian@example.com", 2));
+
+        // Mobile Category
+        DataHolder.registrations.add(new Registration("Mobile Development", "Julia Roberts", "julia@example.com", 1));
     }
 
 }

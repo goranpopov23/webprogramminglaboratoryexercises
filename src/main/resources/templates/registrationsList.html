@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>Registrations</h2>
+
+<span th:text="${category}"></span>
+
+<div>
+  <ul>
+    <li th:each="registration : ${registrations}" th:text="${'Title:' + registration.getWorkshopTitle() + ' Name:' + registration.getParticipantName()}"></li>
+  </ul>
+</div>
+
+<a href="/">Go back</a>
+
+</body>
+</html>
